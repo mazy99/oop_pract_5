@@ -11,7 +11,7 @@ T = TypeVar("T")
 @dataclass
 class LimitedStorage(Generic[T]):
 
-    items: List[T] = field(default_factory=List, repr=False)
+    items: List[T] = field(default_factory=list, repr=False)
     capacity: int = 1
 
     def __post_init__(self) -> None:
