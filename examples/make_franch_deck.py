@@ -3,7 +3,6 @@
 
 
 from dataclasses import dataclass, field
-from typing import List
 
 RANKS = "2 3 4 5 6 7 8 9 10 J Q K A".split()
 SUITS = "♠ ♥ ♦ ♣".split()
@@ -21,7 +20,7 @@ class PlayingCard:
 
 @dataclass
 class Deck:
-    cards: List[PlayingCard] = field(default_factory=make_french_deck)
+    cards: list[PlayingCard] = field(default_factory=make_french_deck)
 
 
 def main():

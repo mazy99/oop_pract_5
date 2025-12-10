@@ -11,7 +11,7 @@ class IllegalYearError(Exception):
     def __init__(self, year: int, message: str = "Illegal year number") -> None:
         self.year = year
         self.message = message
-        super(IllegalYearError, self).__init__(self.message)
+        super().__init__(self.message)
 
     def __str__(self) -> str:
         return f"{self.year} -> {self.message}"
@@ -22,7 +22,7 @@ class UnknownCommandError(Exception):
     def __init__(self, command: str, message: str = "Unknown command") -> None:
         self.command = command
         self.message = message
-        super(UnknownCommandError, self).__init__(self.message)
+        super().__init__(self.message)
 
     def __str__(self) -> str:
         return f"{self.command} -> {self.message}"
@@ -50,22 +50,23 @@ class Staff:
         self.workers.sort(key=lambda worker: worker.name)
 
     def __str__(self) -> str:
+        if not self.workers:
+            return "Нет данных о работниках"
+
         table = []
-        line = "+-{}-+-{}-+-{}-+-{}-+".format("-" * 4, "-" * 30, "-" * 20, "-" * 8)
+        line = f"+{'-' * 6}+{'-' * 34}+{'-' * 24}+{'-' * 12}+"
         table.append(line)
-        table.append(
-            "| {:^4} | {:^30} | {:^20} | {:^8} |".format(
-                "№", "Ф.И.О", "Должность", "Год"
-            )
-        )
+
+        table.append(f"| {'№':^4} | {'Ф.И.О':^32} | {'Должность':^22} | {'Год':^10} |")
         table.append(line)
 
         for idx, worker in enumerate(self.workers, 1):
-            table.append(
-                "| {:>4} | {:<30} | {:<20} | {:>8} |".format(
-                    idx, worker.name, worker.post, worker.year
-                )
-            )
+
+            name = worker.name[:30] + ".." if len(worker.name) > 32 else worker.name
+            post = worker.post[:20] + ".." if len(worker.post) > 22 else worker.post
+
+            table.append(f"| {idx:>4} | {name:<32} | {post:<22} | {worker.year:>10} |")
+
         table.append(line)
         return "\n".join(table)
 
