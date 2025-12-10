@@ -44,14 +44,3 @@ class Product_list:
             )
         except Exception as ex:
             return f"Ошибка: {ex}"
-
-
-if __name__ == "__main__":
-    product_list = Product_list()
-    product_list.add("Banana", 0.8, "Fruits")
-    product_list.add("Apple", 1.2, "Fruits")
-    product_list.add("Carrot", 0.5, "Vegetables")
-    print(product_list.get_products_by_category("Fruits"))
-    print(product_list.get_products_by_category("Meat"))
-
-    print(product_list)
