@@ -25,6 +25,6 @@ if __name__ == "__main__":
     print(plist.get_products_by_category("Техника"))
     print()
 
-    print("=== Тест 4: Проверка обработки пустого списка ===")
+    print("=== Проверка обработки пустого списка ===")
     empty_list = Product_list()
     print(empty_list)
